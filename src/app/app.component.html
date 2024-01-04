@@ -1,0 +1,167 @@
+
+
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <a href="https://signer.caisias.live" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="./assets/logo.svg" class="h-8" alt="Flowbite Logo">
+      <span class="self-center text-sm md:text-xl font-thin md:font-normal whitespace-nowrap dark:text-white">Desktop Signer V1</span>
+  </a>
+  <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <a href="#"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-normal rounded-md text-xs px-4 py-2 text-center">Developer Guide</a>
+      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+  </div>
+  <div class="items-end justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+    <ul class="text-sm flex flex-col p-4 md:p-0 mt-4 font-normal border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Use cases</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">API Documentation</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Downloads</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+<div class="md:hidden w-full h-screen w-auto items-center text-center mx-4 flex justify-center">
+  Please use only Desktop to access this Page.
+  The Signer Functionlity will works on PC only 
+</div>
+<div class="p-2 mx-40 mt-8 font-normal text-xs hidden w-full md:flex md:w-auto md:order-1">
+  <div class="rounded-lg mt-14">
+     <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-4 px-2 flex grid items-top justify-center rounded bg-gray-200 h-auto">
+          <div>
+            <form [formGroup]="signForm" class="pt-6 px-4 w-full">
+              <div class="w-full mb-5 text-green-500 font-medium" *ngIf="clientStatus">{{clientMessage}}</div>
+              <div class="w-full mb-5 text-red-500 font-medium" *ngIf="!clientStatus">
+                <span *ngIf="clientMessage !== 'Desktop Signer has not started'" class="text-blue-500"><svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-blue-600 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                  <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                  </svg>
+                  Initializing...</span> 
+                <span *ngIf="clientMessage == 'Desktop Signer has not started'" class="font-medium inline-flex items-center">
+                  <span>{{clientMessage}},
+                    <br>
+                    <span class="text-teal-600 italic font-normal">
+                      This Signing functionality will not work if Desktop Signer Client is not running. 
+                      If not install, <a class="text-blue-500" href="#" target="_blank">download</a> and install first before using it.
+                    </span>
+                  </span>
+                  <button (click)="checkApiAvailability()" type="button" class="ml-4 text-white bg-teal-500 font-normal rounded-md text-xs p-1 text-center inline-flex items-center">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.37756 11.6296H6.62756H7.37756ZM7.37756 12.5556L6.81609 13.0528C6.95137 13.2056 7.14306 13.2966 7.34695 13.3049C7.55084 13.3133 7.74932 13.2382 7.89662 13.0969L7.37756 12.5556ZM9.51905 11.5414C9.81805 11.2547 9.82804 10.7799 9.54137 10.4809C9.2547 10.182 8.77994 10.172 8.48095 10.4586L9.51905 11.5414ZM6.56148 10.5028C6.28686 10.1927 5.81286 10.1639 5.50277 10.4385C5.19267 10.7131 5.16391 11.1871 5.43852 11.4972L6.56148 10.5028ZM14.9317 9.0093C15.213 9.31337 15.6875 9.33184 15.9915 9.05055C16.2956 8.76927 16.3141 8.29476 16.0328 7.9907L14.9317 9.0093ZM12.0437 6.25C9.05802 6.25 6.62756 8.653 6.62756 11.6296H8.12756C8.12756 9.49251 9.87531 7.75 12.0437 7.75V6.25ZM6.62756 11.6296L6.62756 12.5556H8.12756L8.12756 11.6296H6.62756ZM7.89662 13.0969L9.51905 11.5414L8.48095 10.4586L6.85851 12.0142L7.89662 13.0969ZM7.93904 12.0583L6.56148 10.5028L5.43852 11.4972L6.81609 13.0528L7.93904 12.0583ZM16.0328 7.9907C15.0431 6.9209 13.6212 6.25 12.0437 6.25V7.75C13.1879 7.75 14.2154 8.23504 14.9317 9.0093L16.0328 7.9907Z" fill="currentColor"/>
+                      <path d="M16.6188 11.4443L17.1795 10.9462C17.044 10.7937 16.8523 10.703 16.6485 10.6949C16.4447 10.6868 16.2464 10.7621 16.0993 10.9034L16.6188 11.4443ZM14.4805 12.4581C14.1817 12.745 14.1722 13.2198 14.4591 13.5185C14.746 13.8173 15.2208 13.8269 15.5195 13.54L14.4805 12.4581ZM17.4393 13.4972C17.7144 13.8068 18.1885 13.8348 18.4981 13.5597C18.8078 13.2846 18.8358 12.8106 18.5607 12.5009L17.4393 13.4972ZM9.04688 15.0047C8.76342 14.7027 8.28879 14.6876 7.98675 14.9711C7.68472 15.2545 7.66966 15.7292 7.95312 16.0312L9.04688 15.0047ZM11.9348 17.7499C14.9276 17.7499 17.3688 15.3496 17.3688 12.3703H15.8688C15.8688 14.5047 14.1158 16.2499 11.9348 16.2499V17.7499ZM17.3688 12.3703V11.4443H15.8688V12.3703H17.3688ZM16.0993 10.9034L14.4805 12.4581L15.5195 13.54L17.1383 11.9853L16.0993 10.9034ZM16.0581 11.9425L17.4393 13.4972L18.5607 12.5009L17.1795 10.9462L16.0581 11.9425ZM7.95312 16.0312C8.94543 17.0885 10.3635 17.7499 11.9348 17.7499V16.2499C10.792 16.2499 9.76546 15.7704 9.04688 15.0047L7.95312 16.0312Z" fill="currentColor"/>
+                      <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="">Refresh</span>
+                    </button>
+                </span>
+              </div>
+              <div class="mb-2 w-full">
+                <label class="block mb-2 text-xs font-medium text-gray-900 dark:text-white" for="small_size">Select PDF file</label>
+                <input formControlName="filedata" (change)="onFileSelected($event)"  class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 focus:outline-none" type="file">
+              </div>
+              <div class="mb-2 grid grid-cols-12 flex gap-2">
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Unique ID</label>
+                  <input formControlName="signerid" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Example: UID1200001" required>
+                </div>
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Signing Location</label>
+                  <input formControlName="signlocation"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="New Delhi" required>
+                </div>
+  
+              </div>
+              <div class="mb-2 grid grid-cols-12 flex gap-2">
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Reason</label>
+                  <select formControlName="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">Select...</option>
+                    <option value="Certified document">Certified document</option>
+                    <option value="Test">For testing</option>
+                  </select>
+                </div>
+  
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Sign on</label>
+                  <select formControlName="signpage" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">Select...</option>
+                    <option value="first">First Page</option>
+                    <option value="last">Last Page</option>
+                    <option value="all">All Page</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="mb-2 grid grid-cols-12 flex gap-2 p-3 bg-gray-700 rounded">
+                <div class="col-span-12">
+                  <h2 class="text-sm font-normal text-white">Signature box location & size</h2>
+                </div>
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs  text-gray-200 dark:text-white">X coordinates</label>
+                  <input type="number" formControlName="llx"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="100" required>
+                </div>
+  
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs  text-gray-200 dark:text-white">Y coordinates</label>
+                  <input type="number"  formControlName="lly"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="100" required>
+                </div>
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs text-gray-200 dark:text-white">Width</label>
+                  <input type="number" formControlName="width"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="160" required>
+                </div>
+                <div class="col-span-6">
+                  <label  class="block mb-1 text-xs text-gray-200 dark:text-white">Height</label>
+                  <input type="number" formControlName="height"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="80" required>
+                </div>
+              </div>
+  
+              <button [disabled]="!signForm.valid" (click)="uploadPdf()" type="button" class="text-white  bg-[#2557D6] hover:bg-[#2557D6]/90 focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-normal rounded-md text-xs px-2 pr-4 py-1.5 text-center inline-flex items-center me-2 mb-2 disabled:opacity-50">
+                <svg class="w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" viewBox="0 0 500 500">
+                  <g transform="matrix(1, 0, 0, 1, 0, 1.4210854715202004e-14)">
+                    <path style="stroke-linejoin: round; stroke-linecap: round; stroke: rgb(255, 255, 255); fill: rgba(255, 255, 255, 0); stroke-width: 22px;" d="M 258.679 101.459 C 230.046 74.047 272.313 27.404 305.758 59.446 L 390.588 134.43 C 420.891 169.522 374.867 215.534 343.508 179.124 L 257.609 103.142 C 257.609 103.142 213.065 162.461 120.502 191.641 C 109.689 203.345 103.915 255.872 84.648 373.941 C 221.262 349.688 167.706 359.839 249.35 344.499"/>
+                    <path style="fill: rgb(216, 216, 216); stroke: rgb(248, 248, 248); stroke-linecap: round; stroke-linejoin: round; stroke-width: 22px;" d="M 205.716 262.898 C 147.956 314.555 93.732 361.797 87.595 368.438"/>
+                    <ellipse style="stroke: rgb(252, 252, 252); fill: rgba(255, 255, 255, 0); stroke-width: 22px;" cx="344.547" cy="291.351" rx="63.286" ry="64.861"/>
+                    <path style="stroke: rgb(246, 246, 246); stroke-width: 22px; fill: rgb(255, 255, 255);" d="M 307 347.301 C 306.572 357.987 306.882 436.937 306.882 436.937 C 306.882 436.937 345.616 402.112 348.918 401.765 C 352.499 401.389 351.408 401.926 383.587 436.688 C 383.688 369.405 383.904 401.715 383.472 346.689"/>
+                    <path d="M 644.8 284.425 L 652.073 292.215 L 662.536 290.188 L 663.841 300.766 L 673.498 305.275 L 668.337 314.6 L 673.498 323.925 L 663.841 328.434 L 662.536 339.012 L 652.073 336.985 L 644.8 344.775 L 637.527 336.985 L 627.064 339.012 L 625.759 328.434 L 616.102 323.925 L 621.263 314.6 L 616.102 305.275 L 625.759 300.766 L 627.064 290.188 L 637.527 292.215 Z" style="stroke: rgb(247, 247, 247); stroke-width: 22px;" transform="matrix(-0.856721, 0.515781, -0.515781, -0.856721, 1059.662711, 227.866813)" bx:shape="star 644.8 314.6 30.175 30.175 0.78 10 1@1b7180ba"/>
+                  </g>
+                </svg>
+                Sign PDF with DSC
+                </button>
+            </form>
+          </div>
+
+        </div>
+        <div class="col-span-8 flex items-center justify-center rounded bg-gray-200 h-auto">
+          <div class=" items-center w-full flex text-center justify-center mx-auto px-52 rounded border-2 border-gray-600 w-full h-[600px]" *ngIf="!iframeSrc">
+            <span>
+              <h1 class="mb-2">
+                Select PDF File will be displayed here..
+              </h1>
+              <h2 class="mb-6">
+                also Digitally signed PDF file will also display here.
+              </h2>
+              <span class="text-blue-700 pt-6 text-sm">
+                To validate and check validity of digital signed pdf file, please download and open the pdf with recent version Adobe Reader.   
+              </span>
+
+            </span>
+          
+          </div>
+
+          <iframe class="rounded border-2 border-gray-600 w-full h-[600px]" [src]="iframeSrc" *ngIf="iframeSrc"></iframe>
+        </div>
+     </div>
+  </div>
+</div>
