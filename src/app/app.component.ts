@@ -44,19 +44,31 @@ this.api.disableConsoleInProduction()
   clientStatus!: boolean;
 
   checkApiAvailability(): void {
-    const apiUrl = 'http://localhost:63109/api/check'; // replace with your API endpoint
-
-    this.http.get(apiUrl).subscribe(
+    const apiUrl = 'http://localhost:63108/api/check'; // replace with your API endpoint
+    this.api.getDesktopClientStatus().subscribe(
       (data) => {
-        this.clientMessage = "Desktop Signer is Running..."
+
+        this.clientMessage = data.responseMsg
         this.clientStatus = true;
       },
-      (error) => {
+      (error) => {  
         this.clientMessage = "Desktop Signer has not started"
         this.clientStatus = false;
         alert("Please start Desktop Signer Client")
       }
     );
+    // this.http.get(apiUrl).subscribe(
+    //   (data) => {
+
+    //     this.clientMessage = data.responseMsg
+    //     this.clientStatus = true;
+    //   },
+    //   (error) => {  
+    //     this.clientMessage = "Desktop Signer has not started"
+    //     this.clientStatus = false;
+    //     alert("Please start Desktop Signer Client")
+    //   }
+    // );
   }
 
   getFileExtension(fileName: string): string {

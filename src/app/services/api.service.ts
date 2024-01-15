@@ -24,8 +24,7 @@ export class ApiService {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*',       
       'Content-Type':  'application/json',
-      'Authorization': environment.signerApiKey,
-      'IpAddress-Header': environment.signerServerIp
+      'Authorization': environment.signerApiKey
     })
   };
 
