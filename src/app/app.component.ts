@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { initFlowbite } from 'flowbite';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,7 +6,6 @@ import { ApiService } from './services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, finalize } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,6 +14,7 @@ import { EMPTY } from 'rxjs';
 export class AppComponent {
   title = 'signer-demo';
   base64PdfString: string | undefined;
+  @ViewChild('pdfIframe') pdfIframe: ElementRef | undefined;
   iframeSrc: SafeResourceUrl | undefined;
   signForm!: FormGroup;
   
@@ -38,12 +38,14 @@ this.api.disableConsoleInProduction()
       signlocation: [null, Validators.required],
       signerid: [null, Validators.required],
       signpage: [null, Validators.required],
+      CheckCrl: [null, Validators.required],
     })
   }
   clientMessage: any = "Initializing.......";
   clientStatus!: boolean;
 
   checkApiAvailability(): void {
+
     const apiUrl = 'http://localhost:63108/api/check'; // replace with your API endpoint
     this.api.getDesktopClientStatus().subscribe(
       (data) => {
@@ -71,6 +73,9 @@ this.api.disableConsoleInProduction()
     // );
   }
 
+
+
+
   getFileExtension(fileName: string): string {
     return fileName.split('.').pop() || ''; // Extracts the file extension
   }
@@ -97,6 +102,8 @@ this.api.disableConsoleInProduction()
   }
 
 uploadPdf(): void {
+
+
   if (this.selectedFile) {
     const fileReader = new FileReader();
     fileReader.onload = () => {
@@ -104,6 +111,8 @@ uploadPdf(): void {
       const fd = this.signForm.getRawValue();
       const jsonData = {
         filetype : 'pdf',
+        checkCrl: true,
+        CertMatching: false,
         llx : fd.llx,
         lly: fd.lly,
         width: fd.width,
@@ -113,6 +122,7 @@ uploadPdf(): void {
         signerid: fd.signerid,
         signpage: fd.signpage,
         filedata: this.base64PdfString
+
       }
       this.api.postDataForSigning(jsonData).subscribe((resp=>{
         if(resp.responseCode !== 'SIGVAL'){
@@ -124,6 +134,6 @@ uploadPdf(): void {
       }));
     };
     fileReader.readAsDataURL(this.selectedFile);
+    }
   }
-}
 }
