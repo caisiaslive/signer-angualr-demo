@@ -5,17 +5,23 @@ The Signer utility offers integration capabilities with other business applicati
 
 ## Installation Step
 
-- Download or clone the project
-- `cd signer-demo`
+Download or clone the project
 
-```shell
-    cd signer-demo
-    npm install
-    ng generate environments
+```powershell
+cd signer-demo
+npm install
+ng generate environments
 ```
 
-- `npm install`
-- `ng g environments`
+Update Environment Files (environment.ts and environment.development.ts)
+
+```json
+export const environment = {
+    production: false,
+    clientServer: "http://localhost:63108",
+    signerApiKey: "eyJhbGciOiJIUzI1NiIsInR5........."
+};
+```
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
