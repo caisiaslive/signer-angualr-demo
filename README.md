@@ -1,8 +1,14 @@
-# SignerDemo
+# Signer Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+Signer Client is an utility primarily designed as an electronic signature platform, allowing users to sign documents like pdf and XML digitally.
+The Signer utility offers integration capabilities with other business applications and systems, allowing users to seamlessly incorporate electronic signature functionality into their existing workflows.
 
-## Development server
+## Installation Step
+
+- Download or clone the project
+- `cd signer-demo`
+- `npm install`
+- `ng g environments`
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
