@@ -7,6 +7,13 @@ The Signer utility offers integration capabilities with other business applicati
 
 - Download or clone the project
 - `cd signer-demo`
+
+```shell
+    cd signer-demo
+    npm install
+    ng generate environments
+```
+
 - `npm install`
 - `ng g environments`
 
