@@ -12,6 +12,15 @@ import { EMPTY } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  isLoading: boolean = false;
+
+  lly: any = 100;
+  llx: any = 300
+  height: any = 80;
+  width: any = 100
+  uid: any;
+
   title = 'signer-demo';
   base64PdfString: string | undefined;
   @ViewChild('pdfIframe') pdfIframe: ElementRef | undefined;
@@ -27,6 +36,7 @@ this.api.disableConsoleInProduction()
   
   ngOnInit(): void {
     initFlowbite();
+    this.uid = this.generateRandomString(10);
     this.checkApiAvailability()
     this.signForm = this.fb.group({
       filedata: [null, Validators.required],
@@ -38,44 +48,25 @@ this.api.disableConsoleInProduction()
       signlocation: [null, Validators.required],
       signerid: [null, Validators.required],
       signpage: [null, Validators.required],
-      CheckCrl: [null, Validators.required],
+      // CheckCrl: [null, Validators.required],
     })
   }
   clientMessage: any = "Initializing.......";
   clientStatus!: boolean;
 
   checkApiAvailability(): void {
-
-    const apiUrl = 'http://localhost:63108/api/check'; // replace with your API endpoint
-    this.api.getDesktopClientStatus().subscribe(
+  this.api.getDesktopClientStatus().subscribe(
       (data) => {
-
         this.clientMessage = data.responseMsg
         this.clientStatus = true;
       },
       (error) => {  
-        this.clientMessage = "Desktop Signer has not started"
+        this.clientMessage = "DigiSigner has not started"
         this.clientStatus = false;
-        alert("Please start Desktop Signer Client")
+        alert("Please start DigiSigner Client")
       }
     );
-    // this.http.get(apiUrl).subscribe(
-    //   (data) => {
-
-    //     this.clientMessage = data.responseMsg
-    //     this.clientStatus = true;
-    //   },
-    //   (error) => {  
-    //     this.clientMessage = "Desktop Signer has not started"
-    //     this.clientStatus = false;
-    //     alert("Please start Desktop Signer Client")
-    //   }
-    // );
   }
-
-
-
-
   getFileExtension(fileName: string): string {
     return fileName.split('.').pop() || ''; // Extracts the file extension
   }
@@ -102,16 +93,29 @@ this.api.disableConsoleInProduction()
   }
 
 uploadPdf(): void {
-
+  this.api.getDesktopClientStatus().subscribe(
+    (data) => {
+      this.clientMessage = data.responseMsg
+      this.clientStatus = true;
+    },
+    (error) => {  
+      this.clientMessage = "DigiSigner has not started"
+      this.clientStatus = false;
+      alert("Please start DigiSigner Client")
+      return
+    }
+  );
 
   if (this.selectedFile) {
+    this.showProgressSpinner();
+
     const fileReader = new FileReader();
     fileReader.onload = () => {
       this.base64PdfString = fileReader.result as string;
       const fd = this.signForm.getRawValue();
       const jsonData = {
         filetype : 'pdf',
-        checkCrl: true,
+        // checkCrl: false,
         CertMatching: false,
         llx : fd.llx,
         lly: fd.lly,
@@ -126,14 +130,35 @@ uploadPdf(): void {
       }
       this.api.postDataForSigning(jsonData).subscribe((resp=>{
         if(resp.responseCode !== 'SIGVAL'){
+          this.hideProgressSpinner();
           alert(resp.responseMsg)
         }else{
           const pdfBase64PdfString = "data:application/pdf;base64," + resp.responseMsg;
           this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(pdfBase64PdfString);
+          this.hideProgressSpinner();
+
         }
       }));
     };
     fileReader.readAsDataURL(this.selectedFile);
     }
+  }
+
+  showProgressSpinner = () => {
+    this.isLoading = true;
+  };
+  hideProgressSpinner = () => {
+    this.isLoading = false;
+  };
+
+
+  generateRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 }
