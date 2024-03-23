@@ -1,5 +1,7 @@
 # Signer Web Frontend
 
+![alt text](image.png)
+
 Signer Client is an utility primarily designed as an electronic signature platform, allowing users to sign documents like pdf and XML digitally.
 The Signer utility offers integration capabilities with other business applications and systems, allowing users to seamlessly incorporate electronic signature functionality into their existing workflows.
 
