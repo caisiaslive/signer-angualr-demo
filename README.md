@@ -1,9 +1,11 @@
-# Signer Web Frontend
+# DigiSigner API Utility
 
 ![alt text](image.png)
 
-Signer Client is an utility primarily designed as an electronic signature platform, allowing users to sign documents like pdf and XML digitally.
+DigiSigner API Client is an utility primarily designed as an electronic signature platform, allowing users to sign documents like pdf and XML digitally.
 The Signer utility offers integration capabilities with other business applications and systems, allowing users to seamlessly incorporate electronic signature functionality into their existing workflows.
+
+You can Download the DigiSigner API Utiliy at https://repo.caisias.com/downloads/release/
 
 ## Demo
 
@@ -37,7 +39,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts/app will be stored in the `dist/` directory.
 
 ## Documentation
 
