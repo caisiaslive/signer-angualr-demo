@@ -5,7 +5,11 @@ The Signer utility offers integration capabilities with other business applicati
 
 ## Demo
 
-https://signerdemo.caisias.live
+https://signerdemo.caisias.com
+
+## API Key
+
+Get free API key from https://digisigner.caisias.com
 
 ## Installation Step
 
@@ -22,7 +26,7 @@ Update Environment Files (environment.ts and environment.development.ts)
 ```json
 export const environment = {
     production: false,
-    clientServer: "http://localhost:63108",
+    clientServer: "https://localhost:63108",
     signerApiKey: "eyJhbGciOiJIUzI1NiIsInR5........."
 };
 ```
